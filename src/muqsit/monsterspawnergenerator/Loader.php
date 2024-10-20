@@ -6,7 +6,7 @@ namespace muqsit\monsterspawnergenerator;
 
 use InvalidArgumentException;
 use muqsit\monsterspawnergenerator\loot\LootTable;
-use pocketmine\block\BlockLegacyIds;
+use pocketmine\block\BlockTypeIds;
 use pocketmine\block\Opaque;
 use pocketmine\block\tile\Container;
 use pocketmine\block\tile\Tile;
@@ -101,7 +101,7 @@ final class Loader extends PluginBase implements Listener{
 		foreach($info->possibleChestPos as $positions){
 			foreach($positions as $position){
 				$chosenBlock = $world->getBlockAt($position->x, $position->y, $position->z);
-				if($chosenBlock->getId() !== BlockLegacyIds::AIR){
+				if($chosenBlock->getTypeId() !== BlockTypeIds::AIR){
 					continue;
 				}
 
@@ -110,7 +110,7 @@ final class Loader extends PluginBase implements Listener{
 				foreach(Facing::HORIZONTAL as $side){
 					$sidePos = $position->getSide($side);
 					$sideBlock = $world->getBlockAt($sidePos->x, $sidePos->y, $sidePos->z);
-					if($sideBlock->getId() === BlockLegacyIds::AIR){
+					if($sideBlock->getTypeId() === BlockTypeIds::AIR){
 						$airs[] = $side;
 					}elseif($sideBlock instanceof Opaque){
 						$opaques[] = $side;
