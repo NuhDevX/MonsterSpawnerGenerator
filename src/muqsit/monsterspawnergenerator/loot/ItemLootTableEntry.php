@@ -9,8 +9,7 @@ use InvalidArgumentException;
 use pocketmine\item\enchantment\EnchantmentInstance;
 use pocketmine\item\enchantment\VanillaEnchantments;
 use pocketmine\item\Item;
-use pocketmine\item\ItemFactory;
-use pocketmine\item\ItemIds;
+use pocketmine\item\ItemTypeIds;
 use pocketmine\item\StringToItemParser;
 use pocketmine\utils\Random;
 use function array_rand;
@@ -31,9 +30,9 @@ final class ItemLootTableEntry{
 		$data["functions"] ??= [];
 
 		$item = StringToItemParser::getInstance()->parse($data["name"]) ?? match($data["name"]){
-			"minecraft:name_tag" => ItemFactory::getInstance()->get(ItemIds::NAME_TAG),
-			"minecraft:horsearmoriron" => ItemFactory::getInstance()->get(ItemIds::HORSE_ARMOR_IRON),
-			"minecraft:horsearmorgold" => ItemFactory::getInstance()->get(ItemIds::HORSE_ARMOR_GOLD),
+			"minecraft:name_tag" => ItemTypeIds::NAME_TAG,
+			"minecraft:horsearmoriron" => ItemTypeIds::HORSE_ARMOR_IRON,
+			"minecraft:horsearmorgold" => ItemTypeIds::HORSE_ARMOR_GOLD,
 			default => null
 		} ?? throw new InvalidArgumentException("Invalid item \"{$data["name"]}\"");
 
